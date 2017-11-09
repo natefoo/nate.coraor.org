@@ -235,3 +235,7 @@ So, I'm happy to report that LACP + jumbo frames are working great (and probably
 can thwack your network device's driver in to submission.
 
 Thanks as always to the Joyeurs for their hard work and support.
+
+**Addendum 2017-11-09 11:51:00 -0400:** I've disabled `aggr0_lacp_mode` and set my switch to use non-LACP trunking.
+Since I boot from PXE, and because LACP is not activated until the OS is booted, PXE was unable to contact the network
+to boot. Multilink trunking/failover still works and I wasn't using dynamic LACP anyway, so this is not a huge issue.
