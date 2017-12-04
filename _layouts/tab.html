@@ -1,0 +1,8 @@
+---
+layout: page
+---
+<p>{{ page.description }}</p>
+
+<p><a href="{{ "/tab/static/" | append: page.static | append: ".txt" | relative_url }}">View this tab as a txt file</a>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include_relative static/{{ page.static }}_inc.txt %}</code></pre></div></div>
