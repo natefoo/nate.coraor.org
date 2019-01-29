@@ -2,7 +2,7 @@
 layout:     post
 title: 		"Debian root in a btrfs subvolume"
 date: 		2015-11-04 10:09:49 -0500
-categories: debian installation
+tags:       debian installation
 ---
 
 # Background

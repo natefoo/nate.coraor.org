@@ -2,7 +2,7 @@
 layout:     post
 title:      "Python Packaging: What's the Big Wheel?"
 date:       2015-08-28 16:03:10 -0400
-categories: python packaging
+tags:       python packaging
 ---
 
 # Background

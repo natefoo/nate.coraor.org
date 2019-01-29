@@ -2,7 +2,7 @@
 layout:     post
 title:      "Link Aggregations and Jumbo Frames in SmartOS"
 date:       2017-11-09 00:25:23 -0500
-categories: smartos systems
+tags:       smartos systems
 ---
 # Background
 
