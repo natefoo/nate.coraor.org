@@ -45,7 +45,7 @@ To understand what's happened, have a look at the playbook:
   pre_tasks:
     - name: Create the Galaxy FTP upload dir
       file:
-        path: "{{ galaxy_ftp_upload_dir }}"
+        path: "/srv/galaxy/ftp"
         owner: galaxy
         group: galaxy
         mode: 0750
