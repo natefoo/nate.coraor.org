@@ -7,6 +7,7 @@ on:
 
 env:
   NOKOGIRI_USE_SYSTEM_LIBRARIES: "true"
+  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
 jobs:
   deploy:
