@@ -15,4 +15,4 @@ jobs:
           ruby-version: "2.7"
           bundler-cache: true
       - run: bundle exec jekyll build
-      - run: bundle exec htmlproofer --disable-external ./_site
+      #- run: bundle exec htmlproofer --disable-external ./_site
