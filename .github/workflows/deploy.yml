@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  NOKOGIRI_USE_SYSTEM_LIBRARIES: "true"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+          bundler-cache: true
+      - run: bundle exec jekyll build
+      - run: |
+         mkdir -p "$HOME/.ssh"
+         echo 'enospc.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx3uSDW/WL8IciBIsoIohJzU36YVfOB7RagS69b61R2j+h2YiXzL16MNPm4DN2aSsz9QY2BsNu3zrHOWgT5U2yfLY+17dFf+xRcTutUoJ9yOatrqZk1i84xmrKiFtTNTy/YLXL4mSRf6pXhOjVN1nURHo6JZo1g+lRaVTOCYbXbwuRZizhI7nFw+lSgYb9IjVl+XdNl6faADo0TaKI+hYkGdOVl5o/fg4qYuFetjm4pmtA9zz0yHiBSUonQwipaZuoY/dK7F8le7AHokwYBDqRgNrxkPquV3iyOo7frzjrMZ1bAC6TzXglzUM1hTVd12pbXEFtt+xzj5CZNrGI5B4v' >> "$HOME/.ssh/known_hosts"
+         echo 'enospc.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA6l2/mOMrp0gI/qB/YMDKVKSojoynkr52xDd7qO4yfTCnViY4EurnWhVWNKDzOGG+GpqAY7SvUIl62zfSCH9pw=' >> "$HOME/.ssh/known_hosts"
+         echo 'enospc.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOo1AADuJaxBKqZDpaEXxiJfBld0Rl8D4I7TQDH9OWcy' >> "$HOME/.ssh/known_hosts"
+         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+         ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
+      - run: rsync -av --delete _site/ sites@enospc.org:/srv/nginx/nate.coraor.org/root
+
