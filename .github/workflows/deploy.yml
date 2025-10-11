@@ -21,10 +21,10 @@ jobs:
       - run: bundle exec jekyll build
       - run: |
          mkdir -p "$HOME/.ssh"
-         echo 'enospc.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx3uSDW/WL8IciBIsoIohJzU36YVfOB7RagS69b61R2j+h2YiXzL16MNPm4DN2aSsz9QY2BsNu3zrHOWgT5U2yfLY+17dFf+xRcTutUoJ9yOatrqZk1i84xmrKiFtTNTy/YLXL4mSRf6pXhOjVN1nURHo6JZo1g+lRaVTOCYbXbwuRZizhI7nFw+lSgYb9IjVl+XdNl6faADo0TaKI+hYkGdOVl5o/fg4qYuFetjm4pmtA9zz0yHiBSUonQwipaZuoY/dK7F8le7AHokwYBDqRgNrxkPquV3iyOo7frzjrMZ1bAC6TzXglzUM1hTVd12pbXEFtt+xzj5CZNrGI5B4v' >> "$HOME/.ssh/known_hosts"
-         echo 'enospc.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA6l2/mOMrp0gI/qB/YMDKVKSojoynkr52xDd7qO4yfTCnViY4EurnWhVWNKDzOGG+GpqAY7SvUIl62zfSCH9pw=' >> "$HOME/.ssh/known_hosts"
-         echo 'enospc.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOo1AADuJaxBKqZDpaEXxiJfBld0Rl8D4I7TQDH9OWcy' >> "$HOME/.ssh/known_hosts"
+         echo 'enospc.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCblNHPTH/mvS+EJ6iEu+NwZ32BV7TUHx3bhvmNk6bBvWyoBzTS8x87vjDa7f/NiaavNhA3Pm5pzuiw8XRcI3vnEttVG8zrRfaLkK34flKfOLRz9EeM0YOMdr+Hnsjvi0ljNcEaTemq5vRlB4YFQz7bPkVgDGCeJUefmzoCXT2QqKuPpGJfBKHFxE0oRO35hDCrbX/QprSbRfj0MFsua4BzrcqN7kK8dc6I1T3DIM0vrTCPQZDDkYYQB1p8tA0futB5FSI2skEp854UBm0DrfEtG5w+pmjO6cj+PaJtcU9ivHRZ3OUITra9kKxUJcBX96JukvWBp31iDt6P2VYM69QrhnHXpJfF632LbcQukHXlVptvBxL1O2neKnOxTqLO6X2TrgCtdpCWDle3bz5xL6IZdAcKoQRXIHeW7xIlcFgya4odBbC1KNN8j7Bsg/EO2bf3LAxk3HNuHho/joLUTgCOoUdVBH9u51tAWX6nA8S0a0kWXfwQ1WsgUYnhMs55K+8=' >> "$HOME/.ssh/known_hosts"
+         echo 'enospc.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBD5M8NAJost/yNDQdDp5wYw5GoRQq7dRYxpgT3HRYu3VnhbA8s2P3Vc1p2iFtGE66QAWtDEQJnBPdw2jbWTK/o0=' >> "$HOME/.ssh/known_hosts"
+         echo 'enospc.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlDRkaAxhyXM4WuCZLjhEaN6GjOwKXo4YKCG6N21ibD' >> "$HOME/.ssh/known_hosts"
          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
          ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
-      - run: rsync -av --delete _site/ sites@enospc.org:/srv/nginx/nate.coraor.org/root
+      - run: rsync -av --delete _site/ sites@enospc.org:/data/sites/nate.coraor.org
 
